@@ -12,7 +12,7 @@
       <h4>login/sign up</h4>
       <q-input
         class="text-right"
-        v-model="Mobile"
+        v-model="mobile"
         filled
         :rules="[(val) => !!val || 'Field is required']"
         hint="username"
@@ -22,7 +22,7 @@
       </p>
 
       <q-input
-        v-model="Password"
+        v-model="password"
         filled
         :type="isPwd ? 'password' : 'text'"
         hint="Password with toggle"
@@ -41,8 +41,9 @@
       </p>
 
       <q-btn
+        :loading="loading"
         color="primary"
-        @click="dologin"
+        @click="dologin()"
         style="width: 95%"
       >
         sign in
@@ -65,12 +66,12 @@ import { useRouter } from "vue-router";
 export default {
   name: "LoginPage",
   setup() {
-    const Mobile=ref(null);
-    const Password=ref(null);
+    // const Mobile = ref(null);
+    // const Password = ref(null);
     const $q = useQuasar();
     const store = useStore();
     const router = useRouter();
-    // const loading = ref(false);
+    const loading = ref(false);
     const progress = ref(false);
     const errorMobile = ref(false);
     const errorPass = ref(false);
@@ -82,11 +83,11 @@ export default {
     }
     function dologin() {
       // we set loading state
-      // loading.value = true;
+      loading.value = true;
       api
         .post("/login", {
-          mobile: Mobile,
-          password: Password,
+          mobile: this.mobile,
+          password: this.password,
         })
         .then((response) => {
           $q.cookies.set("user", response.data.data.user);
@@ -116,16 +117,16 @@ export default {
         });
       // simulate a delay
 
-      // setTimeout(() => {
-        // we're done, we reset loading state
-        // loading.value = false;
-      // }, 1000);
+      setTimeout(() => {
+      // we're done, we reset loading state
+      loading.value = false;
+      }, 1000);
     }
     return {
-      Mobile,
-      Password,
+      mobile:ref(""),
+      password:ref(""),
       isPwd: ref(true),
-      // loading,
+      loading,
       progress,
       dologin,
       token,
