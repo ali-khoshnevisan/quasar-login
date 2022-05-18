@@ -13,7 +13,6 @@
       </q-toolbar>
 
       <q-tabs v-if="!isAuth" align="left">
-        <q-route-tab to="/" label="Home" icon="home" />
         <q-route-tab to="/login" label="Login" icon="login" />
       </q-tabs>
 
