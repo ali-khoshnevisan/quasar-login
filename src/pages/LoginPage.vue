@@ -41,7 +41,6 @@
       </p>
 
       <q-btn
-        :loading="loading"
         color="primary"
         @click="dologin"
         style="width: 95%"
@@ -66,10 +65,12 @@ import { useRouter } from "vue-router";
 export default {
   name: "LoginPage",
   setup() {
+    const Mobile=ref(null);
+    const Password=ref(null);
     const $q = useQuasar();
     const store = useStore();
     const router = useRouter();
-    const loading = ref([false]);
+    // const loading = ref(false);
     const progress = ref(false);
     const errorMobile = ref(false);
     const errorPass = ref(false);
@@ -81,7 +82,7 @@ export default {
     }
     function dologin() {
       // we set loading state
-      loading.value = true;
+      // loading.value = true;
       api
         .post("/login", {
           mobile: Mobile,
@@ -115,16 +116,16 @@ export default {
         });
       // simulate a delay
 
-      setTimeout(() => {
+      // setTimeout(() => {
         // we're done, we reset loading state
-        loading.value = false;
-      }, 1000);
+        // loading.value = false;
+      // }, 1000);
     }
     return {
       Mobile,
       Password,
       isPwd: ref(true),
-      loading,
+      // loading,
       progress,
       dologin,
       token,
