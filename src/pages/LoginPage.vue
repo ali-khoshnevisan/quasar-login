@@ -12,7 +12,7 @@
       <h4>login/sign up</h4>
       <q-input
         class="text-right"
-        v-model="mobile"
+        v-model="Mobile"
         filled
         :rules="[(val) => !!val || 'Field is required']"
         hint="username"
@@ -22,7 +22,7 @@
       </p>
 
       <q-input
-        v-model="password"
+        v-model="Password"
         filled
         :type="isPwd ? 'password' : 'text'"
         hint="Password with toggle"
@@ -41,9 +41,9 @@
       </p>
 
       <q-btn
-        :loading="loading[3]"
+        :loading="loading"
         color="primary"
-        @click="dologin(3)"
+        @click="dologin"
         style="width: 95%"
       >
         sign in
@@ -66,10 +66,12 @@ import { useRouter } from "vue-router";
 export default {
   name: "LoginPage",
   setup() {
+    const Mobile=ref("");
+    const Password=ref("");
     const $q = useQuasar();
     const store = useStore();
     const router = useRouter();
-    const loading = ref([false, false, false, false, false, false]);
+    const loading = ref(false);
     const progress = ref(false);
     const errorMobile = ref(false);
     const errorPass = ref(false);
@@ -79,19 +81,18 @@ export default {
     function token(token) {
       store.commit("user/login", token);
     }
-    function dologin(number) {
+    function dologin() {
       // we set loading state
-      loading.value[number] = true;
+      loading.value = true;
       api
         .post("/login", {
-          mobile: this.mobile,
-          password: this.password,
+          mobile: Mobile,
+          password: Password,
         })
         .then((response) => {
           $q.cookies.set("user", response.data.data.user);
           token(response.data.data.access_token);
           $q.cookies.set("token", response.data.data.access_token, {
-            expires: response.data.data.token_expires_at,
             sameSite: "Strict",
           });
           router.push("/profile");
@@ -118,12 +119,12 @@ export default {
 
       setTimeout(() => {
         // we're done, we reset loading state
-        loading.value[number] = false;
+        loading.value = false;
       }, 1000);
     }
     return {
-      mobile: ref(""),
-      password: ref(""),
+      Mobile,
+      Password,
       isPwd: ref(true),
       loading,
       progress,
