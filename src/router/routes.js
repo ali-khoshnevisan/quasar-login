@@ -5,7 +5,6 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     meta: { loginRequired: true },
     children: [
-      { path: '/home', component: () => import('pages/IndexPage.vue'), meta: { loginRequired: true } },
       { path: '/profile', component: () => import('pages/UserProfile.vue'), meta: { loginRequired: true } },
       { path: '/update', component: () => import('pages/UpdateUser.vue'), meta: { loginRequired: true } },
     ]

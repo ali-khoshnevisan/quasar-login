@@ -13,7 +13,6 @@
       </q-toolbar>
 
       <q-tabs v-if="isAuth" align="left">
-        <q-route-tab to="/home" label="Home" icon="home" />
         <q-route-tab to="/profile" label="Profile" icon="account_circle" />
         <q-route-tab
           @click="logoutUser()"
