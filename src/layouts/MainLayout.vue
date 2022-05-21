@@ -12,18 +12,15 @@
         <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
       </q-toolbar>
 
-      <q-tabs v-if="!isAuth" align="left">
-        <q-route-tab to="/login" label="Login" icon="login" />
-      </q-tabs>
-
-      <q-tabs v-else align="left">
-        <q-route-tab to="/" label="Home" icon="home" />
+      <q-tabs v-if="isAuth" align="left">
+        <q-route-tab to="/home" label="Home" icon="home" />
         <q-route-tab to="/profile" label="Profile" icon="account_circle" />
         <q-route-tab
           @click="logoutUser()"
           to="/"
           label="logout"
           icon="logout"
+          exact
         />
       </q-tabs>
     </q-header>
