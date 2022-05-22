@@ -16,10 +16,9 @@
         <q-route-tab to="/profile" label="Profile" icon="account_circle" />
         <q-route-tab
           @click="logoutUser()"
-          to="/"
+          to="/login"
           label="logout"
           icon="logout"
-          exact
         />
       </q-tabs>
     </q-header>
@@ -41,7 +40,6 @@ import { useStore } from "vuex";
 
 export default {
   setup() {
-    // const isAuth = ref(null);
     const rightDrawerOpen = ref(false);
     const store = useStore();
 

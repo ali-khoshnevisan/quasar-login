@@ -7,7 +7,7 @@
       <div class="q-gutter-md text-center col-xs-7 q-py-lg q-px-md bg-grey-1">
         <h4>login/sign up</h4>
         <q-input
-          v-model="mobile"
+          v-model="Mobile"
           filled
           :rules="[(val) => !!val || 'Field is required']"
           hint="username"
@@ -17,7 +17,7 @@
         </p>
 
         <q-input
-          v-model="password"
+          v-model="Password"
           filled
           :type="isPwd ? 'password' : 'text'"
           hint="Password with toggle"
@@ -38,6 +38,7 @@
         <q-btn
           :loading="loading"
           color="primary"
+          @keyup.enter="dologin()"
           @click="dologin()"
           style="width: 95%"
         >
@@ -62,8 +63,9 @@ import { useRouter } from "vue-router";
 export default {
   name: "LoginPage",
   setup() {
-    // const Mobile = ref(null);
-    // const Password = ref(null);
+    const Mobile = ref(null);
+    const Password = ref(null);
+    const isPwd = ref(true);
     const $q = useQuasar();
     const store = useStore();
     const router = useRouter();
@@ -82,8 +84,8 @@ export default {
       loading.value = true;
       api
         .post("/login", {
-          mobile: this.mobile,
-          password: this.password,
+          mobile: Mobile.value,
+          password: Password.value,
         })
         .then((response) => {
           $q.cookies.set("user", response.data.data.user);
@@ -119,9 +121,9 @@ export default {
       }, 1000);
     }
     return {
-      mobile: ref(""),
-      password: ref(""),
-      isPwd: ref(true),
+      Mobile,
+      Password,
+      isPwd,
       loading,
       progress,
       dologin,
