@@ -45,7 +45,9 @@
         >
           <template v-slot:no-option>
             <q-item>
-              <q-item-section class="text-grey"> استان مورد نظر وجود ندارد </q-item-section>
+              <q-item-section class="text-grey">
+                استان مورد نظر وجود ندارد
+              </q-item-section>
             </q-item>
           </template>
         </q-select>
@@ -71,8 +73,12 @@
         >
           <template v-slot:no-option>
             <q-item>
-              <q-item-section v-if="province" class="text-grey"> شهر مورد نظر وجود ندارد </q-item-section>
-              <q-item-section v-else class="text-grey"> ابتدا استان خود را مشخص کنید </q-item-section>
+              <q-item-section v-if="province" class="text-grey">
+                شهر مورد نظر وجود ندارد
+              </q-item-section>
+              <q-item-section v-else class="text-grey">
+                ابتدا استان خود را مشخص کنید
+              </q-item-section>
             </q-item>
           </template>
         </q-select>
@@ -98,7 +104,9 @@
         >
           <template v-slot:no-option>
             <q-item>
-              <q-item-section class="text-grey"> رشته مورد نظر وجود ندارد </q-item-section>
+              <q-item-section class="text-grey">
+                رشته مورد نظر وجود ندارد
+              </q-item-section>
             </q-item>
           </template>
         </q-select>
@@ -195,7 +203,8 @@ export default {
     const accept = ref(false);
 
     onMounted(() => {
-      user.value = $q.cookies.get("user");
+      // user.value = $q.cookies.get("user");
+      user.value = JSON.parse(localStorage.getItem("user"));
       console.log(user.value);
       id.value = user.value.id;
       firstName.value = user.value.first_name;
@@ -295,7 +304,8 @@ export default {
         .then((res) => {
           user.value = res.data.data;
           user.value.province = province.value;
-          $q.cookies.set("user", user.value);
+          // $q.cookies.set("user", user.value);
+          localStorage.setItem("user", JSON.stringify(user.value));
           router.push("/Profile");
         })
         .catch((err) => {

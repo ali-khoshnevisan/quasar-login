@@ -88,11 +88,12 @@ export default {
           password: Password.value,
         })
         .then((response) => {
-          $q.cookies.set("user", response.data.data.user);
+          // $q.cookies.set("user", response.data.data.user);
+          localStorage.setItem("user", JSON.stringify(response.data.data.user));
           token(response.data.data.access_token);
-          $q.cookies.set("token", response.data.data.access_token, {
-            sameSite: "Strict",
-          });
+          // $q.cookies.set("token", response.data.data.access_token, {
+          //   sameSite: "Strict",
+          // });
           router.push("/profile");
         })
         .catch((error) => {

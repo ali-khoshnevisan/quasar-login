@@ -92,11 +92,16 @@ export default {
       major: "",
     });
     onMounted(() => {
-      user.first_name = $q.cookies.get("user").first_name;
-      user.last_name = $q.cookies.get("user").last_name;
-      user.gender = $q.cookies.get("user").gender;
-      user.shahr = $q.cookies.get("user").shahr;
-      user.major = $q.cookies.get("user").major;
+      // user.first_name = $q.cookies.get("user").first_name;
+      // user.last_name = $q.cookies.get("user").last_name;
+      // user.gender = $q.cookies.get("user").gender;
+      // user.shahr = $q.cookies.get("user").shahr;
+      // user.major = $q.cookies.get("user").major;
+      user.first_name = JSON.parse(localStorage.getItem("user")).first_name;
+      user.last_name = JSON.parse(localStorage.getItem("user")).last_name;
+      user.gender = JSON.parse(localStorage.getItem("user")).gender;
+      user.shahr = JSON.parse(localStorage.getItem("user")).shahr;
+      user.major = JSON.parse(localStorage.getItem("user")).major;
     });
     function goToUpdate() {
       router.push("/update");
@@ -110,8 +115,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.my-card{
+.my-card {
   width: 100%;
-  max-width: 300px
+  max-width: 300px;
 }
 </style>

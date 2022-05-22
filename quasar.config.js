@@ -110,7 +110,7 @@ module.exports = configure(function (ctx) {
       // Quasar plugins
       plugins: [
         'Notify',
-        'Cookies'
+        // 'Cookies'
       ],
       config: {
         notify: { /* look at QuasarConfOptions from the API card */ }
