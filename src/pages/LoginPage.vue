@@ -38,7 +38,6 @@
         <q-btn
           :loading="loading"
           color="primary"
-          @keyup.enter="dologin()"
           @click="dologin()"
           style="width: 95%"
         >
@@ -54,7 +53,7 @@
 </template>
 
 <script>
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { api } from "boot/axios";
 import { useQuasar } from "quasar";
 import { useStore } from "vuex";
@@ -75,6 +74,14 @@ export default {
     const errorPass = ref(false);
     const mobileError = reactive({ error_1: "", error_2: "" });
     const passwordError = reactive({ error_1: "", error_2: "" });
+
+    onMounted(() => {
+      window.addEventListener("keyup", (event) => {
+        if (event.keyCode === 13) {
+          dologin();
+        }
+      });
+    });
 
     function token(token) {
       store.commit("user/login", token);

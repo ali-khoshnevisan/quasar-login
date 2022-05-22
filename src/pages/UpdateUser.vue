@@ -139,11 +139,7 @@
         <br />
 
         <div>
-          <q-btn
-            label="Submit"
-            @click="onSubmit"
-            color="primary"
-          />
+          <q-btn label="Submit" @click="onSubmit" color="primary" />
           <q-btn
             label="Reset"
             type="reset"
@@ -202,7 +198,6 @@ export default {
     onMounted(() => {
       // user.value = $q.cookies.get("user");
       user.value = JSON.parse(localStorage.getItem("user"));
-      console.log(user.value);
       id.value = user.value.id;
       firstName.value = user.value.first_name;
       lastName.value = user.value.last_name;
@@ -230,20 +225,26 @@ export default {
       }
     });
 
+    window.addEventListener("keyup", (event) => {
+      if (event.keyCode === 13) {
+        onSubmit();
+      }
+    });
+
     function getData() {
       api.get("/megaroute/getUserFormData").then((res) => {
         genders.value = res.data.data.genders;
         for (let index = 0; index < genders.value.length; index++) {
           gendersTitle.push(genders.value[index].title);
-        };
+        }
         majors.value = res.data.data.majors;
         for (let index = 0; index < majors.value.length; index++) {
           majorsTitle.push(majors.value[index].title);
-        };
+        }
         provinces.value = res.data.data.provinces;
         for (let index = 0; index < provinces.value.length; index++) {
           provincesTitle.push(provinces.value[index].title);
-        };
+        }
         cities.value = res.data.data.cities;
       });
     }
@@ -278,6 +279,32 @@ export default {
       gender.value = e;
       let selectedgender = genders.value.filter((gender) => gender.name == e);
       gender_id.value = selectedgender[0].id;
+    }
+
+    function onSubmit() {
+      if (accept.value !== true) {
+        $q.notify({
+          color: "red-5",
+          textColor: "white",
+          icon: "warning",
+          message: "You need to complete all the fields",
+        });
+      } else {
+        $q.notify({
+          color: "green-4",
+          textColor: "white",
+          icon: "cloud_done",
+          message: "Submitted",
+        });
+        editUser();
+      }
+    }
+    function onReset() {
+      province.value = null;
+      city.value = null;
+      major.value = null;
+      gender.value = null;
+      accept.value = false;
     }
 
     function editUser() {
@@ -341,32 +368,8 @@ export default {
       cityChanged,
       majorChanged,
       genderChanged,
-
-      onSubmit() {
-        if (accept.value !== true) {
-          $q.notify({
-            color: "red-5",
-            textColor: "white",
-            icon: "warning",
-            message: "You need to complete all the fields",
-          });
-        } else {
-          $q.notify({
-            color: "green-4",
-            textColor: "white",
-            icon: "cloud_done",
-            message: "Submitted",
-          });
-          editUser();
-        }
-      },
-      onReset() {
-        province.value = null;
-        city.value = null;
-        major.value = null;
-        gender.value = null;
-        accept.value = false;
-      },
+      onSubmit,
+      onReset,
 
       filterFn(val, update) {
         if (val === "") {
