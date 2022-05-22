@@ -138,12 +138,10 @@
         </q-select>
         <br />
 
-        <q-toggle v-model="accept" label="I accept the license and terms" />
-
         <div>
           <q-btn
             label="Submit"
-            @click="editUser"
+            @click="onSubmit"
             type="submit"
             color="primary"
           />
@@ -221,6 +219,15 @@ export default {
       if (user.value.gender) {
         gender.value = user.value.gender.title;
         gender_id.value = user.value.gender.id;
+      }
+      if (
+        firstName.value &&
+        lastName.value &&
+        major_id.value &&
+        gender_id.value &&
+        shahr_id.value
+      ) {
+        accept.value = true;
       }
     });
 
@@ -361,7 +368,7 @@ export default {
             color: "red-5",
             textColor: "white",
             icon: "warning",
-            message: "You need to accept the license and terms first",
+            message: "You need to complete all the fields",
           });
         } else {
           $q.notify({
@@ -370,14 +377,14 @@ export default {
             icon: "cloud_done",
             message: "Submitted",
           });
+          editUser();
         }
       },
       onReset() {
-        firstName.value = null;
-        lastName.value = null;
         province.value = null;
         city.value = null;
         major.value = null;
+        gender.value = null;
         accept.value = false;
       },
 
