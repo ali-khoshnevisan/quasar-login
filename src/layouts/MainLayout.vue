@@ -8,8 +8,6 @@
           </q-avatar>
           Login page
         </q-toolbar-title>
-
-        <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
       </q-toolbar>
 
       <q-tabs v-if="isAuth" align="left">
@@ -23,10 +21,6 @@
       </q-tabs>
     </q-header>
 
-    <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
-      <!-- drawer content -->
-    </q-drawer>
-
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -34,13 +28,12 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed } from "vue";
 
 import { useStore } from "vuex";
 
 export default {
   setup() {
-    const rightDrawerOpen = ref(false);
     const store = useStore();
 
     function logoutUser() {
@@ -49,10 +42,6 @@ export default {
     }
 
     return {
-      rightDrawerOpen,
-      toggleRightDrawer() {
-        rightDrawerOpen.value = !rightDrawerOpen.value;
-      },
       logoutUser,
       isAuth: computed(() => store.state.user.IsUserAuthenticated),
     };
