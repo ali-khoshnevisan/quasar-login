@@ -142,7 +142,6 @@
           <q-btn
             label="Submit"
             @click="onSubmit"
-            type="submit"
             color="primary"
           />
           <q-btn
@@ -231,40 +230,25 @@ export default {
       }
     });
 
-    function getGender() {
+    function getData() {
       api.get("/megaroute/getUserFormData").then((res) => {
         genders.value = res.data.data.genders;
         for (let index = 0; index < genders.value.length; index++) {
           gendersTitle.push(genders.value[index].title);
-        }
-      });
-    }
-    function getMajor() {
-      api.get("/megaroute/getUserFormData").then((res) => {
+        };
         majors.value = res.data.data.majors;
         for (let index = 0; index < majors.value.length; index++) {
           majorsTitle.push(majors.value[index].title);
-        }
-      });
-    }
-    function getProvinces() {
-      api.get("/megaroute/getUserFormData").then((res) => {
+        };
         provinces.value = res.data.data.provinces;
         for (let index = 0; index < provinces.value.length; index++) {
           provincesTitle.push(provinces.value[index].title);
-        }
-      });
-    }
-    function getCities() {
-      api.get("/megaroute/getUserFormData").then((res) => {
+        };
         cities.value = res.data.data.cities;
       });
     }
 
-    getProvinces();
-    getCities();
-    getGender();
-    getMajor();
+    getData();
 
     function provinceChanged(e) {
       province.value = e;
@@ -352,15 +336,11 @@ export default {
       gender_id,
       selectedCities,
       accept,
-      getGender,
-      getMajor,
-      getProvinces,
-      getCities,
+      getData,
       provinceChanged,
       cityChanged,
       majorChanged,
       genderChanged,
-      editUser,
 
       onSubmit() {
         if (accept.value !== true) {
