@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf" class="bg-info">
+  <q-layout view="hHh lpR fFf" class="">
     <q-header elevated class="bg-primary text-white" height-hint="98">
       <q-toolbar>
         <q-toolbar-title>
@@ -12,6 +12,7 @@
 
       <q-tabs v-if="isAuth" align="left">
         <q-route-tab to="/profile" label="Profile" icon="account_circle" />
+        <q-route-tab to="/video" label="video player" icon="video-player" />
         <q-route-tab
           @click="logoutUser()"
           to="/login"

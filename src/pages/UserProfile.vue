@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md row items-start q-gutter-md flex-center">
+  <div class="q-pa-md row items-start q-gutter-md flex-center bg-info">
     <q-card class="my-card">
       <img src="..\assets\download.png" />
       <q-card-actions align="right">

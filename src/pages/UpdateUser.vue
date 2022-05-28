@@ -1,6 +1,6 @@
 <template>
-  <div class="flex-center">
-    <div class="q-pa-md q-ma-xl q-py-lg q-px-md bg-grey-1">
+  <div class="flex-center bg-info">
+    <div class="q-pa-md q-mx-xl q-py-lg bg-grey-1">
       <q-form
         @submit="onSubmit"
         @reset="onReset"
