@@ -12,7 +12,7 @@
 
       <q-tabs v-if="isAuth" align="left">
         <q-route-tab to="/profile" label="Profile" icon="account_circle" />
-        <q-route-tab to="/video" label="video player" icon="video-player" />
+        <q-route-tab to="/video" label="video player" icon="movie" />
         <q-route-tab
           @click="logoutUser()"
           to="/login"

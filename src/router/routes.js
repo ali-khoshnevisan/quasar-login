@@ -7,6 +7,7 @@ const routes = [
     children: [
       { path: '/profile', component: () => import('pages/UserProfile.vue'), meta: { loginRequired: true } },
       { path: '/update', component: () => import('pages/UpdateUser.vue'), meta: { loginRequired: true } },
+      { path: '/video', component: () => import('pages/VideoPlayer.vue'), meta: { loginRequired: true } },
     ]
   },
   { path: '/login', component: () => import('pages/LoginPage.vue'), meta: { loginRedirect: true } },
