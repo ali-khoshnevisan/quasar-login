@@ -30,7 +30,6 @@ export default route(function ({ store }) {
   // runs the default `next()` callback but also triggers
   // the subsequent Middleware function.
   function nextFactory(context, middleware, index) {
-    console.log(context)
     const subsequentMiddleware = middleware[index];
     // If no subsequent Middleware exists,
     // the default `next()` callback is returned.
