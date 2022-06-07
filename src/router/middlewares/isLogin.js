@@ -1,7 +1,7 @@
-export default function login({ next, router, store }) {
-    if (!store.state.user.IsUserAuthenticated) {
+export default function login({ next, store }) {
+    if (!store.getters['user/isAuthGetter']) {
         return next();
     }
 
-    return next( '/profile' );
+    return next({ name: 'profile' });
 }

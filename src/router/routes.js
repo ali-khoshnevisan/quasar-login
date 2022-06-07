@@ -7,12 +7,12 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     meta: { middleware: [auth] },
     children: [
-      { path: '/profile', component: () => import('pages/UserProfile.vue'), meta: { middleware: [auth] } },
-      { path: '/update', component: () => import('pages/UpdateUser.vue'), meta: { middleware: [auth] } },
-      { path: '/video', component: () => import('pages/VideoPlayer.vue'), meta: { middleware: [auth] } },
+      { path: '/profile',name:'profile', component: () => import('pages/UserProfile.vue'), meta: { middleware: [auth] } },
+      { path: '/update',name:'update', component: () => import('pages/UpdateUser.vue'), meta: { middleware: [auth] } },
+      { path: '/video',name:'video', component: () => import('pages/VideoPlayer.vue'), meta: { middleware: [auth] } },
     ]
   },
-  { path: '/login', component: () => import('pages/LoginPage.vue'), meta: { middleware: [login] } },
+  { path: '/login',name:'login', component: () => import('pages/LoginPage.vue'), meta: { middleware: [login] } },
 
   // Always leave this as last one,
   // but you can also remove it

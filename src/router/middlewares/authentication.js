@@ -1,7 +1,7 @@
 export default function auth({ next, store }) {
-    if (store.state.user.IsUserAuthenticated) {
+    if (store.getters['user/isAuthGetter']) {
         return next();
     }
 
-    return next('/login');
+    return next({name:'login'});
 }
