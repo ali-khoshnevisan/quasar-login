@@ -1,7 +1,8 @@
 import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
+import user from "./modules/user"
 
-import user from './user'
+// import user from './user'
 
 /*
  * If not building with SSR mode, you can
@@ -14,6 +15,35 @@ import user from './user'
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
+    state: {
+      // sections: [
+      //   { name: "سکشن یک", isActive: true },
+      //   { name: "سکشن دو", isActive: true },
+      //   { name: "سکشن سه", isActive: true },
+      //   { name: "سکشن چهار", isActive: true },
+      // ],
+      // scrollTop: 0
+    },
+    getters: {
+      // getSections(state) {
+      //   return state.sections;
+      // },
+      // getScrollTop(state) {
+      //   return state.scrollTop
+      // },
+    },
+    mutations: {
+      // showMenu(state, index) {
+      //   state.sections[index].isActive = false;
+      // },
+      // hideMenu(state, index) {
+      //   state.sections[index].isActive = true;
+      // },
+      // setScrollTop(state, position) {
+      //   state.scrollTop = position
+      // }
+    },
+    actions: {},
     modules: {
       user
     },
