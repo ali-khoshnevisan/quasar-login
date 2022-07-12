@@ -1,5 +1,5 @@
 export default function login({ next, store }) {
-    if (!store.getters['user/isAuthGetter']) {
+    if (!store.getters.isAuthGetter) {
         return next();
     }
 

@@ -13,10 +13,10 @@ export default defineComponent({
     const store = useStore();
     const router = useRoute();
     onMounted(() => {
-      store.dispatch("user/onStart");
+      store.dispatch("onStart");
     });
     watch(router, () => {
-      store.dispatch("user/onStart");
+      store.dispatch("onStart");
     });
     return {};
   },

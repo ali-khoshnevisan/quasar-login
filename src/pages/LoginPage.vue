@@ -84,7 +84,7 @@ export default {
     });
 
     function token(token) {
-      store.commit("user/login", token);
+      store.commit("login", token);
     }
     function dologin() {
       // we set loading state
