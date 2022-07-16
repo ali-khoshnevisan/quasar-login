@@ -214,15 +214,6 @@ export default {
         gender.value = user.value.gender.title;
         gender_id.value = user.value.gender.id;
       }
-      if (
-        firstName.value &&
-        lastName.value &&
-        major_id.value &&
-        gender_id.value &&
-        shahr_id.value
-      ) {
-        accept.value = true;
-      }
     });
 
     window.addEventListener("keyup", (event) => {
@@ -282,6 +273,15 @@ export default {
     }
 
     function onSubmit() {
+      if (
+        firstName.value &&
+        lastName.value &&
+        major_id.value &&
+        gender_id.value &&
+        shahr_id.value
+      ) {
+        accept.value = true;
+      }
       if (accept.value !== true) {
         $q.notify({
           color: "red-5",

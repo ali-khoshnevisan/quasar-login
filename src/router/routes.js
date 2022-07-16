@@ -10,6 +10,7 @@ const routes = [
       { path: '/profile',name:'profile', component: () => import('pages/UserProfile.vue'), meta: { middleware: [auth] } },
       { path: '/update',name:'update', component: () => import('pages/UpdateUser.vue'), meta: { middleware: [auth] } },
       { path: '/video',name:'video', component: () => import('pages/VideoPlayer.vue'), meta: { middleware: [auth] } },
+      { path: '/study',name:'study', component: () => import('pages/studyPlan.vue'), meta: { middleware: [auth] } },
     ]
   },
   { path: '/login',name:'login', component: () => import('pages/LoginPage.vue'), meta: { middleware: [login] } },

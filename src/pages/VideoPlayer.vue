@@ -33,7 +33,10 @@
     </div>
     <div class="section2 column q-mx-md">
       <h5 class="text-right yekan">لیست فیلم ها</h5>
-      <dropdownContainer />
+      <keep-alive>
+        <component :is="selectedComponent" />
+      </keep-alive>
+      <!-- <dropdownContainer /> -->
     </div>
   </div>
 </template>
@@ -41,9 +44,14 @@
 <script>
 import dropdownContainer from "../components/dropdownContainer.vue";
 export default {
+  data() {
+    return {
+      selectedComponent: "dropdownContainer",
+    };
+  },
   components: {
     dropdownContainer,
-  }
+  },
 };
 </script>
 

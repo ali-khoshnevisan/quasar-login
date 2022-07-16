@@ -13,6 +13,7 @@
       <q-tabs v-if="isAuth" align="left">
         <q-route-tab to="/profile" label="Profile" icon="account_circle" />
         <q-route-tab to="/video" label="video player" icon="movie" />
+        <q-route-tab to="/study" label="study plan" icon="book" />
         <q-route-tab
           @click="logoutUser()"
           to="/login"
@@ -38,7 +39,7 @@ export default {
     const store = useStore();
 
     function logoutUser() {
-      store.commit("user/logout");
+      store.commit("logout");
       window.location.reload();
     }
 
